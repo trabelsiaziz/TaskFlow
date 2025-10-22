@@ -1,19 +1,28 @@
 package dev.aziz.TaskFlow.Entities;
 
-import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@Entity
-@Table(name = "tasks")
+import java.util.Date;
+
+@Getter
+@Setter
 public class Task {
 
-   @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String title;
+    private String description;
+    private String status;
+    private Date DueDate;
+    private User[] assignedUsers;
 
-    @Column
-    private String name;
-
+    public Task(int id, String title, String description, String status, Date dueDate, User[] assignedUsers) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.status = status;
+        DueDate = dueDate;
+        this.assignedUsers = assignedUsers;
+    }
 
 }
