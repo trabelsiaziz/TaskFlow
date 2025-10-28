@@ -1,0 +1,31 @@
+***)User Management
+A user should be able to sign up using email and password.
+A user should be able to log in and log out securely.
+A user should be able to update their profile (name, avatar, etc.).
+
+***)Board Management
+A user should be able to create a board.
+A user should be able to rename a board.
+A user should be able to delete a board.
+A user should be able to set board visibility (private, team, public).
+
+***)List Management (within a board)
+A user should be able to create a list inside a board.
+A user should be able to rename a list.
+A user should be able to delete a list.
+
+***)Card Management (within a list)
+A user should be able to create a card inside a list.
+A user should be able to rename a card.
+A user should be able to delete a card.
+A user should be able to add a description to a card.
+A user should be able to add comments to a card.
+A user should be able to attach files/images to a card.
+A user should be able to set due dates for cards.
+A user should be able to assign members to a card.
+A user should be able to add tags(finished, waiting ...) to cards.
+
+***)Team & Collaboration
+A user should be able to invite other users to a board.
+A user should be able to assign roles (admin, member) on a board.
+
