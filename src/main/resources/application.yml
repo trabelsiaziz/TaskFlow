@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: TaskFlow
+    port: 8888
+
+  datasource:
+    url: jdbc:postgresql://db:5432/taskflow-db
+    username: taskflow-user
+    password: mysecretpassword
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    format_sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect

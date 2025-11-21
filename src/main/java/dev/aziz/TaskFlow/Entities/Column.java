@@ -1,20 +1,14 @@
 package dev.aziz.TaskFlow.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
+@Setter
 @AllArgsConstructor
-@Entity
-public class User {
-    @Id
+public class Column {
     private int id;
     private String name;
-    private String email;
-    private String password;
-
+    private Card[] cards;
 }

@@ -1,10 +1,10 @@
 package dev.aziz.TaskFlow.Repositories;
 
-import dev.aziz.TaskFlow.Entities.Task;
+import dev.aziz.TaskFlow.Entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-
 @Repository
-public interface TaskRepository extends JpaRepository<Task, Integer> {
+public interface UserRepository extends JpaRepository<User, Long> {
+
 }
