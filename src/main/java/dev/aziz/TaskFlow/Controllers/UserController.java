@@ -2,7 +2,6 @@ package dev.aziz.TaskFlow.Controllers;
 
 import dev.aziz.TaskFlow.Entities.User;
 import dev.aziz.TaskFlow.Repositories.UserRepository;
-import dev.aziz.TaskFlow.Service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -49,6 +48,40 @@ public class UserController {
     public ResponseEntity<List<User>> allUsers() {
         var users = userRepository.findAll();
         return ResponseEntity.ok(users);
+    }
+    @PostMapping("/login")
+    public ResponseEntity<Map<String, Object>> loginUser(@RequestBody Map<String, Object> loginInfo) {
+        if (loginInfo == null || !loginInfo.containsKey("email") || !loginInfo.containsKey("password")) {
+            Map<String, Object> errorBody = new HashMap<>();
+            errorBody.put("success", false);
+            errorBody.put("message", "Missing required fields: email and password");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorBody);
+        }
+
+        String email = loginInfo.get("email") == null ? "" : loginInfo.get("email").toString().trim();
+        String password = loginInfo.get("password") == null ? "" : loginInfo.get("password").toString();
+
+        log.info("User login data received: {}", loginInfo);
+
+        User user = userRepository.findByEmail(email);
+        if (user == null) {
+            Map<String, Object> errorBody = new HashMap<>();
+            errorBody.put("success", false);
+            errorBody.put("message", "Invalid email or password");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorBody);
+        }
+
+        if (user.getPassword() == null || !user.getPassword().equals(password)) {
+            Map<String, Object> errorBody = new HashMap<>();
+            errorBody.put("success", false);
+            errorBody.put("message", "Invalid email or password");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorBody);
+        }
+
+        Map<String, Object> responseBody = new HashMap<>();
+        responseBody.put("success", true);
+        responseBody.put("message", "User logged in successfully");
+        return ResponseEntity.ok(responseBody);
     }
 
     @GetMapping("/health")

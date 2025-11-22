@@ -9,7 +9,28 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Login:", { email, password });
+    async function loginUser() {
+      try {
+        const response = await fetch("http://localhost:8888/api/users/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        });
+        const data = await response.json();
+        if (response.ok) {
+          console.log("Login successful:", data);
+          navigate("/dashboard");
+        } else {
+          console.error("Login failed:", data.message);
+          // Handle login failure (e.g., show error message)
+        }
+      } catch (error) {
+        console.error("An error occurred:", error);
+      }
+    }
+    loginUser();
   };
 
   return (
