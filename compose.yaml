@@ -10,12 +10,11 @@
 services:
   db:
     container_name: taskflow-db-container
-    image: postgres:18
+    image: postgres:16
     environment:
       POSTGRES_USER: taskflow-user
       POSTGRES_PASSWORD: mysecretpassword
       POSTGRES_DB: taskflow-db
-      PGDATA: /var/lib/postgresql/18/docker
     volumes:
       - db-data:/var/lib/postgresql
     ports:

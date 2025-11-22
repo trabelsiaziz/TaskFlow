@@ -40,9 +40,28 @@ const Signup = () => {
     }
 
     setLoading(true);
+    // send the data to the server here localhost:8888
+    async function sendData() {
+        try {
+            const response = await fetch('http://localhost:8888/api/users/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+            const result = await response.json();
+            console.log('Success:', result);
+            }catch (error) {
+            console.error('Error during signup:', error);
+        }
+    }
+
+    sendData();
 
     setTimeout(() => {
       console.log("Signup:", formData);
+      
       setLoading(false);
       // Navigate after success
       navigate("/login");
