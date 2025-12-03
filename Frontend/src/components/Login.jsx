@@ -34,6 +34,7 @@ const Login = () => {
   };
 
   return (
+    
     <div className="min-h-screen bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 flex items-center justify-center p-6">
       {/* Animated Background Circles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

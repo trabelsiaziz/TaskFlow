@@ -16,7 +16,7 @@ import java.util.Map;
 @AllArgsConstructor
 @RequestMapping("/api/users")
 @SuppressWarnings({"unused"}) // Controller discovered via component scan
-public class UserController {
+public class UserController {   
 
     private UserRepository userRepository;
 
@@ -81,6 +81,21 @@ public class UserController {
         Map<String, Object> responseBody = new HashMap<>();
         responseBody.put("success", true);
         responseBody.put("message", "User logged in successfully");
+        return ResponseEntity.ok(responseBody);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Map<String, Object>> deleteUser(@PathVariable int id) {
+        if (!userRepository.existsById(id)) {
+            Map<String, Object> errorBody = new HashMap<>();
+            errorBody.put("success", false);
+            errorBody.put("message", "User not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorBody);
+        }
+        userRepository.deleteById(id);
+        Map<String, Object> responseBody = new HashMap<>();
+        responseBody.put("success", true);
+        responseBody.put("message", "User deleted successfully");
         return ResponseEntity.ok(responseBody);
     }
 
